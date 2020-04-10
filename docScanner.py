@@ -34,3 +34,12 @@ def fp_transform(img, pts):
     M = cv2.getPerspectiveTransform(rectangle, dst)
 	warped = cv2.warpPerspective(img, M, (maxWidth, maxHeight))
 	return warped
+
+root = tk.Tk()
+root.withdraw()
+image_path = filedialog.askopenfilename()
+image = cv2.imread(image_path)
+ratio = image.shape[0] / 500.0
+orig = image.copy()
+image = imutils.resize(image, height = 500)
+
