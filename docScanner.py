@@ -62,4 +62,11 @@ try:
 	cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
 	cv2.imshow("Outline", image)
 	cv2.waitKey(0)
-	cv2.destroyAllWindows()   
+	cv2.destroyAllWindows()  
+
+    warped = fp_transform(orig, screenCnt.reshape(4, 2) * ratio)
+	warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
+	T = threshold_local(warped, 11, offset = 10, method = "gaussian")
+	warped = (warped > T).astype("uint8") * 255
+	cv2.imshow("Scanned", imutils.resize(warped, height = 650))
+	cv2.imwrite('Scanned.jpg',warped)
