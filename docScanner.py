@@ -70,3 +70,7 @@ try:
 	warped = (warped > T).astype("uint8") * 255
 	cv2.imshow("Scanned", imutils.resize(warped, height = 650))
 	cv2.imwrite('Scanned.jpg',warped)
+
+    cv2.waitKey(0)
+except NameError:
+	print('Image not Clear')
