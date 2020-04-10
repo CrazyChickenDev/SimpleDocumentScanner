@@ -15,3 +15,10 @@ def order_points(pts):
 	rectangle[1] = pts[np.argmin(diff)]
 	rectangle[3] = pts[np.argmax(diff)]
 	return rectangle
+
+def fp_transform(img, pts):
+	rectangle = order_points(pts)
+	(tl, tr, br, bl) = rectangle
+	widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
+	widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
+	maxWidth = max(int(widthA), int(widthB))
