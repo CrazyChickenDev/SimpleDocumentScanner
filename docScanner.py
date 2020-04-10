@@ -30,3 +30,7 @@ def fp_transform(img, pts):
 		[maxWidth - 1, 0],
 		[maxWidth - 1, maxHeight - 1],
 		[0, maxHeight - 1]], dtype = "float32")
+
+    M = cv2.getPerspectiveTransform(rectangle, dst)
+	warped = cv2.warpPerspective(img, M, (maxWidth, maxHeight))
+	return warped
